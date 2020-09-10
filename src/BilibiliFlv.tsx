@@ -2,7 +2,7 @@
  * @Author: Kanata You 
  * @Date: 2020-09-08 01:41:51 
  * @Last Modified by: Kanata You
- * @Last Modified time: 2020-09-09 03:20:32
+ * @Last Modified time: 2020-09-10 23:50:42
  */
 
 import React from "react";
@@ -946,13 +946,23 @@ export class BilibiliFlv extends ResponsiveComponent<BilibiliFlvProps, BilibiliF
                         ) as 0 | 1 | 2 | 3 | 4);
                         
                         // 更新视频信息
-                        this.setState({
-                            duration: this.dom.current!.duration,
-                            buffered: this.dom.current!.buffered.end(0),
-                            curTime: this.dom.current!.currentTime,
-                            volume: this.dom.current!.volume,
-                            muted: this.dom.current!.muted
-                        });
+                        try {
+                            this.setState({
+                                duration: this.dom.current!.duration,
+                                buffered: this.dom.current!.buffered.end(0),
+                                curTime: this.dom.current!.currentTime,
+                                volume: this.dom.current!.volume,
+                                muted: this.dom.current!.muted
+                            });
+                        } catch {
+                            this.setState({
+                                duration: this.dom.current!.duration,
+                                buffered: 0,
+                                curTime: this.dom.current!.currentTime,
+                                volume: this.dom.current!.volume,
+                                muted: this.dom.current!.muted
+                            });
+                        }
                     }
                 }
                 onTimeUpdate={
@@ -980,11 +990,19 @@ export class BilibiliFlv extends ResponsiveComponent<BilibiliFlvProps, BilibiliF
                             }))(this.dom.current!);
                         } else {
                             // 更新播放状态
-                            this.setState({
-                                duration: this.dom.current!.duration,
-                                buffered: this.dom.current!.buffered.end(0),
-                                curTime: this.dom.current!.currentTime
-                            });
+                            try {
+                                this.setState({
+                                    duration: this.dom.current!.duration,
+                                    buffered: this.dom.current!.buffered.end(0),
+                                    curTime: this.dom.current!.currentTime
+                                });
+                            } catch {
+                                this.setState({
+                                    duration: this.dom.current!.duration,
+                                    buffered: 0,
+                                    curTime: this.dom.current!.currentTime
+                                });
+                            }
                         }
                     }
                 } >
