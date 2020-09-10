@@ -1,6 +1,6 @@
 {
   "name": "you-bilibiliflv",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A TSX (React TypeScript) component based on bilibili/flv.js",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
