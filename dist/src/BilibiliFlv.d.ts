@@ -70,6 +70,22 @@ export declare class BilibiliFlv extends ResponsiveComponent<BilibiliFlvProps, B
      */
     protected dom: React.RefObject<HTMLVideoElement>;
     /**
+     * 无交互进度条的容器的引用.
+     *
+     * @protected
+     * @type {React.RefObject<SVGSVGElement>}
+     * @memberof BilibiliFlv
+     */
+    protected prog: React.RefObject<SVGSVGElement>;
+    /**
+     * 无交互进度条的引用.
+     *
+     * @protected
+     * @type {React.RefObject<SVGRectElement>}
+     * @memberof BilibiliFlv
+     */
+    protected progBar: React.RefObject<SVGRectElement>;
+    /**
      * 控件组容器元素的引用.
      *
      * @protected
@@ -500,6 +516,8 @@ export interface BilibiliFlvControlInterface {
     btnStop: Array<JSX.Element>;
     /** 时间字体颜色 */
     color: string;
+    /** 无交互进度条样式 */
+    progStyle: string;
     /** 进度条：背景，rect，x坐标自动延伸 */
     progressBase: JSX.Element;
     /** 进度条：加载，rect，x坐标自动定位 */
